@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name xc9572xlpc44)(type Legacy)(uri ${KIPRJMOD}/xc9572xlpc44.lib)(options "")(descr ""))
+)

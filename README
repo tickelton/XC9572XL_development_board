@@ -1,0 +1,17 @@
+Xilinx XC9572XL Development Board
+=================================
+
+A development board and demo code for the Xilinx XC9572XL CPLD.
+
+The board targets the PLC44 package in particular and is designed
+in a way that it can be build with through hole parts on a perfboard.
+
+
+License
+-------
+
+This project is distributed under the terms of the ISC license.
+
+See LICENSE for details.
+
+
