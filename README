@@ -7,6 +7,31 @@ The board targets the PLC44 package in particular and is designed
 in a way that it can be build with through hole parts on a perfboard.
 
 
+Software
+--------
+
+The demo Verilog code in src/ toggle P1 at a frequency of about 0.75Hz
+when using a 50MHz oscillator.
+
+
+Hardware
+--------
+
+The development board was originally intended to be used in 5V systems,
+e.g. with Arduinos or other AVR controllers powered by a 5V power
+supply.
+Therefore it includes a 5V to 3.3V voltage regulator and uses
+a 5V crystal oscillator since that is the type most commonly 
+available in a through-hole package.
+
+For use in an 3.3V environment, e.g. with a Raspberry Pi or powered
+directly from an Arduino's 3.3V line the voltage regulator can
+be omitted but a 3.3V oscillator has to be used in that case!
+
+IMPORTANT: The XC9500XL CPLDs are 3.3V devices with 5V tolerant
+IOs. So if you make any changes to the design make sure to check
+that the CPLD will actually work with your required voltage levels!!!
+
 License
 -------
 
