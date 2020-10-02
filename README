@@ -32,6 +32,61 @@ IMPORTANT: The XC9500XL CPLDs are 3.3V devices with 5V tolerant
 IOs. So if you make any changes to the design make sure to check
 that the CPLD will actually work with your required voltage levels!!!
 
+
+Programming the CPLD
+--------------------
+
+If you do not have a dedicated JTAG programmer that supports loading
+(X)SVF file to the XC9572XL you can use a Raspberry Pi or and
+Arduino as a Programmer.
+
+
+Using an Arduino as a JTAG programmer
+-------------------------------------
+
+For using an Arduino to program the CPLD please refer to:
+https://github.com/mrjimenez/JTAG
+This project is well documented and should work just fine out of
+the box.
+
+
+Using a Raspberry Pi as a JTAG programmer
+-----------------------------------------
+
+Using a Raspberry Pi with OpenOCD is a little trickier.
+
+Assuming Raspbian/Raspberry Pi OS you can install OpenOCD using
+the following command:
+
+# sudo apt-get install openocd
+
+The connect the JTAG pins of your development board to the GPIO
+pins of the Pi as specified in raspberrypi-native.cfg.
+
+Next you need an appropriate configuration file for OpenOCD.
+An example configuration is provided in conf/xc9500xl.cfg
+
+You can then start the OpenOCD server process:
+
+# sudo openocd  -f cpld.cfg
+
+From another terminal connect to the server using Telnet and
+initial the actual programming:
+
+# telnet localhost 4444
+> scan_chain
+   TapName             Enabled  IdCode     Expected   IrLen IrCap IrMask
+-- ------------------- -------- ---------- ---------- ----- ----- ------
+ 0 auto0.tap              Y     0x59604093 0x00000000     8 0x01  0x03
+> xsvf auto0.tap CPLD_test_01.xsvf
+
+Now all you need is some patience. The programming process can
+take up to several minutes. As long as no error messages are displayed
+there is no reason to worry.
+Usually if it takes long enough for you to worry that means everything
+is working just fine, otherwise you would already have gotten an error ;)
+
+
 License
 -------
 
